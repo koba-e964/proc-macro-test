@@ -1,4 +1,5 @@
 extern crate proc_macro;
+extern crate proc_macro2;
 use quote::quote;
 
 /// https://blog.rust-lang.org/2018/12/21/Procedural-Macros-in-Rust-2018.html
@@ -14,20 +15,11 @@ pub fn hello(attr: proc_macro::TokenStream, item: proc_macro::TokenStream) -> pr
     result.into()
 }
 
-/*
 #[proc_macro]
 pub fn make_pub(item: proc_macro::TokenStream) -> proc_macro::TokenStream {
-    let item: syn::export::TokenStream = item.into();
+    let item: proc_macro2::TokenStream = item.into();
     let result = quote! {
         pub #item
     };
     result.into()
-}
-*/
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
-    }
 }

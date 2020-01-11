@@ -1,9 +1,13 @@
 #[proc_macro_test::hello]
 fn wrapped_function() {}
 
-/*proc_macro_test::make_pub! {
-    static X: u32 = "foo";
-}*/
+mod private {
+    proc_macro_test::make_pub! {
+        static X: u32 = 1;
+    }
+}
+
+pub static Y: u32 = private::X;
 
 #[test]
 fn works() {
